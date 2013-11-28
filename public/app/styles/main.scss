@@ -1,0 +1,65 @@
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+@import 'sass-bootstrap/lib/bootstrap';
+@import './variables.scss';
+
+body {
+    background: $LT-beige;
+}
+
+.megatron {
+
+    text-align:center;
+    padding-top: 140px;
+
+    h1{
+        font-size: $font-size-x-large;
+        text-transform: uppercase;
+        padding-bottom: 100px;
+    }
+
+    .category {
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $LT-purple;
+            color: #fff;
+        }
+        h2 {
+            a{
+                color:inherit;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+            font-family: $font-family-base;
+            text-transform: uppercase;
+            width: 50%;
+            height: 50%;
+            overflow: auto;
+            margin: auto;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            text-align: left;
+            text-shadow: 1px 1px 5px $LT-beige;
+        }
+        background-color: $LT-blue;
+        height:200px;
+        margin-bottom:20px;
+    }
+}
+
+footer{
+    position:absolute;
+    bottom:0px;
+    padding:20px;
+}
+
+.generate .row {
+    margin-bottom:50px;
+
+    .programTables{
+        margin-top:70px;
+    }
+}

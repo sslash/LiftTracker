@@ -1,0 +1,9 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/michaelgunnulfsen/code/LiftTracker",
+			"folder_exclude_path":["node_modules"]
+		}
+	]
+}
