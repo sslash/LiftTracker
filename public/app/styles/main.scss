@@ -1,6 +1,7 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import './images.scss';
 @import './variables.scss';
 
 body {
@@ -62,4 +63,29 @@ footer{
     .programTables{
         margin-top:70px;
     }
+}
+
+
+
+/* Nav */
+#navigationArea nav{
+    .popover{
+        width: 300px;
+        left: inherit !important;
+        right: 0px;
+        .arrow {
+            left: 80%;
+        }
+    }
+
+    .username-small{
+        padding: 5px 0 0 0;
+        margin-right: 40px;
+    }
+} 
+
+
+/* Error messages */
+.control-label {
+    color : $LT-red;
 }

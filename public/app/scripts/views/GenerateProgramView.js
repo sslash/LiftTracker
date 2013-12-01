@@ -6,14 +6,17 @@ define([
     'backbone',
     'templates',
 
-    'models/WorkoutProgram'
-], function ($, _, Backbone, JST, WorkoutProgram) {
+    'models/WorkoutProgram',
+
+    'bootstrap'
+], function ($, _, Backbone, JST, WorkoutProgram, BS) {
     'use strict';
 
     var GenerateprogramviewView = Backbone.View.extend({
-        template: JST['app/scripts/templates/GenerateProgramView.hbs'],
-        exerciseTableTpl : JST['app/scripts/templates/exerciseTable.hbs'],
-        tableTpl : JST['app/scripts/templates/dayTable.hbs'],
+        template: JST['./public/app/scripts/templates/GenerateProgramView.hbs'],
+        exerciseTableTpl : JST['./public/app/scripts/templates/exerciseTable.hbs'],
+        tableTpl : JST['./public/app/scripts/templates/dayTable.hbs'],
+        modalTpl : JST['./public/app/scripts/templates/modal.hbs'],
         model : WorkoutProgram,
 
         events : {
@@ -29,6 +32,7 @@ define([
         	};
 
             this.model = new WorkoutProgram();
+            this.listenTo(this.model, 'change', this.__modelSaved);
         	
         	this.exerciseCount = 0;
             this.dayCount = 0;
@@ -39,6 +43,10 @@ define([
             this.renderTemplate();
             this.renderNewDay();
         	return this;
+        },
+
+        remove : function(){
+            this.$el.remove();
         },
 
         renderTemplate : function(){
@@ -87,8 +95,20 @@ define([
         },
 
         __saveBtnClicked : function(){
-            var title = $('#programTitle').val();
-            this.model.save({title: title});
+            var data = {
+                programTitle : $('#programTitle').val(),
+                owner : LF.user.toJSON()
+            };
+            this.model.save(data);
+        },
+
+        __modelSaved : function(model){
+            var modalTpl = this.modalTpl({
+                programTitle : model.get('programTitle')
+            });
+
+            $('#modal').append(modalTpl);
+            $('#leModal').modal('show');
         },
 
         emptyExcerciseFields : function($ex, $sets){
@@ -100,7 +120,7 @@ define([
         appendExercise : function(ex, sets){
         	this.exerciseCount ++;
         	$('.programTable tbody').last().append(this.exerciseTableTpl({
-        		title : ex,
+        		programTitle : ex,
         		setsNReps : sets,
         		count : this.exerciseCount
         	}));

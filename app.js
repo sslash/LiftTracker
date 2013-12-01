@@ -1,6 +1,7 @@
 var express = require('express'),
   mongoose = require('mongoose'),
   fs = require('fs'),
+  passport    = require('passport'),
   config = require('./config/config');
 
 mongoose.connect(config.db);
@@ -16,9 +17,23 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   }
 });
 
+
+
+require('./config/passport')(passport, config);
+
 var app = express();
 
-require('./config/express')(app, config);
-require('./config/routes')(app);
+require('./config/express')(app, config, passport);
+require('./config/routes')(app, passport);
 
-app.listen(config.port);
+app.use(function(req, res, next){
+  console.log('%s %s. Body: %s', req.method, req.url, JSON.stringify(req.body));
+  next();
+});
+
+
+
+//app.listen(config.port);
+console.log("App started");
+
+module.exports=app;

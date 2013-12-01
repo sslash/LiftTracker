@@ -9,7 +9,33 @@ var config = {
       name: 'lifttracker'
     },
     port: 3000,
-    db: 'mongodb://localhost/lifttracker-development'
+    db: 'mongodb://localhost/lifttracker-development',
+
+    facebook: {
+      clientID: "APP_ID",
+      clientSecret: "APP_SECRET",
+      callbackURL: "http://localhost:3000/auth/facebook/callback"
+    },
+    twitter: {
+      clientID: "CONSUMER_KEY",
+      clientSecret: "CONSUMER_SECRET",
+      callbackURL: "http://localhost:3000/auth/twitter/callback"
+    },
+    github: {
+      clientID: 'APP_ID',
+      clientSecret: 'APP_SECRET',
+      callbackURL: 'http://localhost:3000/auth/github/callback'
+    },
+    google: {
+      clientID: "APP_ID",
+      clientSecret: "APP_SECRET",
+      callbackURL: "http://localhost:3000/auth/google/callback"
+    },
+    linkedin: {
+      clientID: "CONSUMER_KEY",
+      clientSecret: "CONSUMER_SECRET",
+      callbackURL: "http://localhost:3000/auth/linkedin/callback"
+    }
   },
 
   test: {
@@ -18,7 +44,33 @@ var config = {
       name: 'lifttracker'
     },
     port: 3000,
-    db: 'mongodb://localhost/lifttracker-test'
+    db: 'mongodb://localhost/lifttracker-test',
+    
+    facebook: {
+      clientID: "APP_ID",
+      clientSecret: "APP_SECRET",
+      callbackURL: "http://localhost:3000/auth/facebook/callback"
+    },
+    twitter: {
+      clientID: "CONSUMER_KEY",
+      clientSecret: "CONSUMER_SECRET",
+      callbackURL: "http://localhost:3000/auth/twitter/callback"
+    },
+    github: {
+      clientID: 'APP_ID',
+      clientSecret: 'APP_SECRET',
+      callbackURL: 'http://localhost:3000/auth/github/callback'
+    },
+    google: {
+      clientID: "APP_ID",
+      clientSecret: "APP_SECRET",
+      callbackURL: "http://localhost:3000/auth/google/callback"
+    },
+    linkedin: {
+      clientID: "CONSUMER_KEY",
+      clientSecret: "CONSUMER_SECRET",
+      callbackURL: "http://localhost:3000/auth/linkedin/callback"
+    }
   },
 
   production: {

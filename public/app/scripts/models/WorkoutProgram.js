@@ -7,6 +7,7 @@ define([
     'use strict';
 
     var WorkoutprogramModel = Backbone.Model.extend({
+        url : '/workoutProgram',
         defaults: {
         	programTitle : '',
         	programDays : [

@@ -8,7 +8,12 @@ define([
 
     var LfrouterRouter = Backbone.Router.extend({
         routes: {
-        	'generateProgram' : 'generateProgram'
+        	'generateProgram' : 'generateProgram',
+            '*action'         : 'index'
+        },
+
+        index : function() {
+            LF.command.execute('generateIndexView', 'hei');
         },
 
         generateProgram : function() {
