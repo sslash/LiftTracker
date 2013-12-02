@@ -1,0 +1,12 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      Current Workout Program
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" id="curr-wp-list">
+    	{{#each wps}}
+    		<li><a href="#" data-id="{{_id}}">{{programTitle}}</a></li>
+    	{{/each}}
+    </ul>
+  </div>
+</div>

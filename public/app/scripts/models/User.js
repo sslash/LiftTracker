@@ -47,6 +47,23 @@ define([
         			that.trigger('registered', model);
         		}
         	});
+        },
+
+        setCurrentWorkoutProgram : function(id){
+            var that = this,
+                url = ['/users/',
+                        LF.user.get('id'),
+                        '/workoutProgram/',
+                        'setCurrent/',
+                        id].join('');
+                        
+            $.post(url)
+            .done(function(res){
+                that.set(res);
+            })
+            .fail(function(err){
+                console.log("ERROR " + err.responseText);
+            });
         }
     });
 

@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
 	User = mongoose.model('User'),
+	Q	= require('q'),
 	utils = require('../../lib/utils');
+	WorkoutProgram = require('./WorkoutProgram');
 
 
 exports.register = function(req, res){
@@ -25,19 +27,48 @@ exports.register = function(req, res){
 	});
 };
 
-var login = function (req, res) {
-  // if (req.session.returnTo) {
+exports.getById = function(id){
+	var dfr = Q.defer();
+	console.log("ID: " + id);
 
-  //   res.send(req.session.returnTo)
-  //   console.log("delete and return");
-  //   delete req.session.returnTo
-  //   return;
-  // }
+	User.findOne({ _id : id }, function(err,doc){
+		if (err){
+			return  dfr.reject(err);
+		}else{
+			return dfr.resolve(doc);
+		}
+	});
+	return dfr.promise;
+};
+
+var login = function (req, res) {
   res.send({
   	username : req.user.username,
   	id : req.user._id
   });
-}
+};
+
+exports.setCurrentWorkoutProgram = function(req,res){
+	var userId = req.params.uid;
+	var id = req.params.id;
+	exports.getById(userId)
+	.then(function(user){
+
+		WorkoutProgram.getById(id)
+		.then(function(workoutProgram){
+			user.currentWorkoutProgram = workoutProgram._id;
+			user.save();
+			return res.send(user);
+		})
+		.fail(function(err){
+			return res.send(err, 400);
+		})
+	})
+	.fail(function(err){
+		console.log("sAP000:");
+		return res.send(err, 400);
+	});
+},
 
 
 exports.login = function(req,res){

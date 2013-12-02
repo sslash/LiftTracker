@@ -56,7 +56,6 @@ define([
 
         __userAuthenticated : function(data){
             LF.user = this.user;
-            console.log("LFD: registered: " + LF.user.get('username'));
             this.$('#login-btn').popover('hide');
             this.renderLoggedInView();
         },

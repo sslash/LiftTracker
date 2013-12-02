@@ -12,13 +12,18 @@ var auth = require('./middlewares/authorization');
 
 module.exports = function(app, passport){	
 	
+	/* Workout programs */
 	app.post('/workoutProgram', workoutProgram.post);
-	app.post('/users/', userController.register);
+	app.get('/workoutPrograms/users/:id', workoutProgram.getWPsByOwnerId);
 
-	app.get('/login', userController.login)
-	app.get('/signup', userController.signup)
-	app.get('/logout', userController.logout)
-	app.post('/users', userController.register)
+	/* Users */
+	app.post('/users/', userController.register);
+	app.post('/users/:uid/workoutProgram/setCurrent/:id', userController.setCurrentWorkoutProgram);
+
+	app.get('/login', userController.login);
+	app.get('/signup', userController.signup);
+	app.get('/logout', userController.logout);
+	app.post('/users', userController.register);
 	app.post('/users/session',
 		passport.authenticate('local', {
 			//failureRedirect: '/login',

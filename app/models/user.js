@@ -20,6 +20,7 @@
  	hashed_password: { type: String, default: '' },
  	salt: { type: String, default: '' },
  	authToken: { type: String, default: '' },
+  currentWorkoutProgram : { type: Schema.Types.ObjectId, ref: 'WorkoutProgram' },
  	facebook: {},
 	twitter: {},
 	github: {},

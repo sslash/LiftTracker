@@ -69,6 +69,11 @@ footer{
 
 /* Nav */
 #navigationArea nav{
+
+    background-color: $LT-purple;
+    border-radius: 0;
+    border:none;
+    
     .popover{
         width: 300px;
         left: inherit !important;

@@ -14,4 +14,4 @@ WorkoutProgramSchema.virtual('date')
     return this._id.getTimestamp();
   });
 
-mongoose.model('WorkoutProgram', WorkoutProgramSchema);
+var WorkoutProgram = mongoose.model('WorkoutProgram', WorkoutProgramSchema);

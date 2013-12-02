@@ -36,4 +36,5 @@ require([
 ], function (Backbone, LfApp) {
     window.LF = new LfApp();
     LF.start();
+    LF.initialize();
 });
