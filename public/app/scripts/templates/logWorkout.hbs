@@ -1,0 +1,39 @@
+<h3>{{user.currentWorkoutProgram.programTitle}}</h3>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    	{{currDay.dayTitle}}
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" id="workout-days-list">
+    	{{#each days}}
+    		<li><a href="#">{{dayTitle}}</a></li>
+    	{{/each}}
+    </ul>
+  </div>
+</div>
+
+<table id="logTable" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Exercise</th>
+            <th>Sets x Reps</th>
+            <th>Add Set</th>
+          </tr>
+        </thead>
+        <tbody>
+        	{{#each currDay.exercises}}
+        		<tr>
+        			<td>{{title}}</td>
+	            	<td>{{setsNReps}}</td>
+	            	<td>
+	            		<div class="inputField">
+	            			<input type="text" placeholder="# KG" class="form-control short"> X <input type="text" placeholder="# Reps" class="form-control short">
+	            		</div>
+	            		<button type="button" class="btn btn-primary">Add</button></td>
+				</tr>
+
+        	{{/each}}
+        </tbody>
+      </table>
+

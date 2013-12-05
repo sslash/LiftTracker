@@ -10,6 +10,7 @@ define([
         routes: {
         	'generateProgram'   : 'generateProgram',
             'viewProgress'      : 'viewProgress',
+            'logWorkout'        : 'logWorkout',
             '*action'         : 'index'
         },
 
@@ -23,6 +24,10 @@ define([
 
         viewProgress : function(){
             LF.command.execute('viewProgress');  
+        },
+
+        logWorkout : function(){
+            LF.command.execute('logWorkout');  
         }
 
     });

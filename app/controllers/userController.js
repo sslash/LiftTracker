@@ -29,7 +29,6 @@ exports.register = function(req, res){
 
 exports.getById = function(id){
 	var dfr = Q.defer();
-	console.log("ID: " + id);
 
 	User.findOne({ _id : id }, function(err,doc){
 		if (err){
@@ -42,10 +41,15 @@ exports.getById = function(id){
 };
 
 var login = function (req, res) {
-  res.send({
-  	username : req.user.username,
-  	id : req.user._id
-  });
+	WorkoutProgram.getById(req.user.currentWorkoutProgram)
+	.then(function(WorkoutProgram){
+
+		res.send({
+			username : req.user.username,
+			id : req.user._id,
+			currentWorkoutProgram : WorkoutProgram
+		});
+	});
 };
 
 exports.setCurrentWorkoutProgram = function(req,res){

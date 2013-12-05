@@ -11,10 +11,11 @@ define([
     'views/GenerateProgramView',
     'views/HomeView',
     'views/NavigationView',
-    'views/ViewProgressView'
+    'views/ViewProgressView',
+    'views/logWorkout'
 
 ], function ($, _, Backbone, GenerateProgramView, HomeView, NavigationView,
-            ViewProgressView) {
+            ViewProgressView, LogWorkoutView) {
     'use strict';
 
     var ViewCommand = function(){};
@@ -71,6 +72,11 @@ define([
             this.craeteAndShowCurrView(ViewProgressView);
         },
 
+        logWorkout : function() {
+            console.log("NIGG");
+            this.craeteAndShowCurrView(LogWorkoutView);
+        },
+
         generateIndexView : function(){
             this.currView = new HomeView();
             this.ui.main.append(this.currView.render().el);
@@ -80,7 +86,6 @@ define([
             this.currView = new GenerateProgramView();
     		this.ui.main.append(this.currView.render().el);
     	},
-
 
         /* COMMONS */
         craeteAndShowCurrView : function(View){

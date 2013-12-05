@@ -12,17 +12,16 @@ exports.post = function(req, res){
 			if ( !err ){
 				programData.owner = owner;
 				var wp = new WorkoutProgram(programData);
-				wp.save(
-					function(wpErr, doc){
+				wp.save(function(wpErr, doc){
 						if (wpErr){
-							err = wpErr; 
+							return res.send(wpErr, 400);
 						}else{
 							return res.send(doc);
 						}
 					});
+			}else{
+				return res.send(err, 400);
 			}
-
-			return res.send(err, 400);
 		});
 };
 

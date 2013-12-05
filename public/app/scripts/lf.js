@@ -21,9 +21,10 @@ define([
     	},
 
         initialize : function(){
-            this.user = new User({
-                id: "529af7052a2cf5e208000002",
-                username: "mike"
+            this.user = new User({});
+            this.user.authenticate({
+                username : 'mike',
+                password : '1234'
             });
         }
 

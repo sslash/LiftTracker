@@ -3,6 +3,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import 'sass-bootstrap/lib/bootstrap';
 @import './images.scss';
 @import './variables.scss';
+@import './forms.scss';
 
 body {
     background: $LT-beige;
@@ -93,4 +94,27 @@ footer{
 /* Error messages */
 .control-label {
     color : $LT-red;
+}
+
+/* Log workout */
+
+.table tr {
+    text-align: left;
+}
+
+.inputField {
+    display:inline-block;
+}
+
+.loggedSet {
+    display:block;
+    margin-bottom:4px;
+    
+    input{
+        height: 23px;
+        padding: 4px;
+        font-size: 12px;
+        background: rgba(204, 204, 204, 0.24);
+        text-align: center
+    }
 }

@@ -10,6 +10,19 @@ define([
     	url : '/users',
 
         defaults: {
+            log : {
+                currWeek : 0,
+                currDay : 0,
+                weeks : [
+                    [
+                        {   // Day 1
+                            // 'Bench Press' : [{70:10}, {65:10}, {60:10}],
+                            // 'DropDown'    : [{70:10}, {65:10}, {60:10}, {60:10}]
+                        }
+                    ]
+
+                ]
+            }
         },
 
         validate: function(attrs, options) {
