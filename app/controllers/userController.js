@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	Q	= require('q'),
+	Q = require('Q'),
 	utils = require('../../lib/utils');
 	WorkoutProgram = require('./workoutProgram');
 
