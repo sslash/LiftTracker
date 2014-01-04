@@ -1,6 +1,15 @@
 {
-  "name": "lifttracker",
-  "version": "0.0.0",
+    "name": "lifttracker",
+  "title": "lifttracker",
+  "description": "Lift heavy. Track it",
+  "version": "0.0.1",
+  "author": {
+    "name": "Michael Gunnulfsen",
+    "email": "michaelgunnulfsen@gmail.com",
+  },
+  "scripts": {
+    "start": "app.js"
+  },
   "dependencies": {
     "express": "3.4.7",
     "ejs": "~0.8.5",
