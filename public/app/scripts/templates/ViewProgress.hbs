@@ -1,12 +1,61 @@
-<div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      Current Workout Program
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" id="curr-wp-list">
-    	{{#each wps}}
-    		<li><a href="#" data-id="{{_id}}">{{programTitle}}</a></li>
-    	{{/each}}
-    </ul>
-  </div>
-</div>
+<header>
+	<h3>Your Progression <small>({{workoutProgram.programTitle}}, week {{currentWeek}})</small></h3>
+</header>
+
+<div class="large-gap"></div>
+
+<section>
+	<div class="row">
+
+		<!-- LIFT PROGRESS -->
+		<div class="col-sm-6 large-border-right">
+			{{#each log.days}}
+
+			<p>Day: {{@index}} ({{dateFormat timestamp "short"}})</p>
+			<table id="logTable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Exercise</th>
+						<th>KG x Reps</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each ex}}
+					<tr>
+						<td>{{exTitle}}</td>
+
+						<td>
+							{{#each sets}}
+								<p>{{kg}}kg X {{reps}}</p>
+							{{/each}}
+						</td>
+						
+					</tr>
+					{{/each}}
+
+				</tbody>
+
+			</table>
+
+			<div class="small-gap"></div>
+			{{/each}}
+		</div>
+
+
+		<!-- STATS PROGRESS -->
+		<div class="col-sm-6">
+		{{#each bodyStatsLog.entries}}
+			<div class="large-gap"></div>
+			<p class="lead">{{dateFormat timestamp "short"}}</p>
+			{{#if weight}}
+				<p>Body weight: {{weight}}kg</p>
+			{{/if}}
+		{{/each}}
+		</div>
+
+
+	</div>
+
+
+
+</section>

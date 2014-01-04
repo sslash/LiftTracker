@@ -2,6 +2,7 @@ var express = require('express');
 var mongoStore = require('connect-mongo')(express);
 var mongoConfig = require('./mongoConfig');
 var pkg = require('../package');
+var engine = require('ejs-locals');
 
 module.exports = function (app, config, passport) {
   app.set('showStackError', true);
@@ -14,7 +15,9 @@ module.exports = function (app, config, passport) {
 
   // views config
   app.set('views', config.root + '/app/views');
-  app.set('view engine', 'jade');
+
+  app.engine('ejs', engine);
+  app.set('view engine', 'ejs');
 
   app.configure(function () {
     // bodyParser should be above methodOverride

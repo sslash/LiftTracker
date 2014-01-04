@@ -31,9 +31,9 @@ app.use(function(req, res, next){
   next();
 });
 
-
-
-//app.listen(config.port);
-console.log("App started");
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
 
 module.exports=app;

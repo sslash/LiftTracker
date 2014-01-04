@@ -11,11 +11,16 @@ define([
         	'generateProgram'   : 'generateProgram',
             'viewProgress'      : 'viewProgress',
             'logWorkout'        : 'logWorkout',
+            'logStats'          : 'logStats',
             '*action'         : 'index'
         },
 
         index : function() {
             LF.command.execute('generateIndexView', 'hei');
+        },
+
+        logStats : function() {
+            LF.command.execute('generateBodyStatsView');
         },
 
         generateProgram : function() {

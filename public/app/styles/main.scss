@@ -12,7 +12,7 @@ body {
 .megatron {
 
     text-align:center;
-    padding-top: 140px;
+    padding-top: 80px;
 
     h1{
         font-size: $font-size-x-large;
@@ -87,6 +87,13 @@ footer{
     .username-small{
         padding: 5px 0 0 0;
         margin-right: 40px;
+    }
+
+    .navbar-brand {
+        color: #fff;
+        span{
+            margin-left:10px;
+        }
     }
 } 
 

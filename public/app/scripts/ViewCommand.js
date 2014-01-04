@@ -12,10 +12,11 @@ define([
     'views/HomeView',
     'views/NavigationView',
     'views/ViewProgressView',
-    'views/logWorkout'
+    'views/logWorkout',
+    'views/logBodyStats'
 
 ], function ($, _, Backbone, GenerateProgramView, HomeView, NavigationView,
-            ViewProgressView, LogWorkoutView) {
+            ViewProgressView, LogWorkoutView, LogBodyStatsView) {
     'use strict';
 
     var ViewCommand = function(){};
@@ -29,8 +30,6 @@ define([
     		inner : $('main .inner')
     	},
 
-
-        // TODO: INFER PROMISES
     	execute : function(cmd, options){
     		var _options = options || {};
             var that = this;
@@ -54,7 +53,6 @@ define([
             }
 
     		this.ui.main.fadeOut(function(){
-                //that.ui.inner.remove();
                 if ( that.currView){
                     that.currView.remove();
                 }
@@ -72,8 +70,11 @@ define([
             this.craeteAndShowCurrView(ViewProgressView);
         },
 
+        generateBodyStatsView : function() {
+            this.craeteAndShowCurrView(LogBodyStatsView);
+        },
+
         logWorkout : function() {
-            console.log("NIGG");
             this.craeteAndShowCurrView(LogWorkoutView);
         },
 

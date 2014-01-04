@@ -5,13 +5,61 @@ var mongoose = require('mongoose'),
 	WorkoutProgram = require('./WorkoutProgram');
 
 
+exports.index = function(req, res) {
+	res.render('index');
+};
+
+exports.logDay = function(req, res) {
+	if (!req.session.passport.user) {res.send({err : 'User not logged in'}, 401);}
+
+	var userId = req.session.passport.user;
+	exports.getById(userId)
+	.then(function(user){
+		var log = req.body.log;
+		var newEntry = log.days[log.days.length-1];
+		newEntry.timestamp = new Date();
+
+		user.log = log;
+
+		user.save(function(err) {
+			if (err) {
+				res.send(err, 400);
+			}else{
+				res.send(log, 200);
+			}
+		});
+	});
+};
+
+exports.logStatsEntry = function(req, res) {
+	if (!req.session.passport.user) {
+		res.send({err : 'User not logged in'}, 401);
+	}
+
+	var userId = req.session.passport.user;
+	exports.getById(userId)
+	.then(function(user){
+		var statsLog = req.body.statsLog;
+		var newEntry = statsLog.entries[statsLog.entries.length-1];
+		newEntry.timestamp = new Date();
+		user.statsLog = statsLog;
+
+		user.save(function(err) {
+			if (err) {
+				res.send(err, 400);
+			}else{
+				res.send(statsLog, 200);
+			}
+		});
+	});
+};
+
 exports.register = function(req, res){
 	console.log("register: " + JSON.stringify(req.body));
 	var user = new User(req.body)
 	user.provider = 'local'
 	user.save(function (err, usrData) {
 		if (err) {
-			console.log("ERROR: " +JSON.stringify(err) + "::" + utils.errors(err.errors));
 			return res.send(err, 401);
 		}else{
 			res.send({
@@ -47,7 +95,9 @@ var login = function (req, res) {
 		res.send({
 			username : req.user.username,
 			id : req.user._id,
-			currentWorkoutProgram : WorkoutProgram
+			currentWorkoutProgram : WorkoutProgram,
+			log : req.user.log,
+			statsLog : req.user.statsLog
 		});
 	});
 };

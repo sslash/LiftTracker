@@ -112,18 +112,6 @@ module.exports = function (grunt) {
             dist: ['./public/.tmp', '<%= yeoman.dist %>/*'],
             server: './public/.tmp'
         },
-        jshint: {
-            options: {
-                jshintrc: './public/.jshintrc',
-                reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%= yeoman.app %>/scripts/{,*/}*.js',
-                '!<%= yeoman.app %>/scripts/vendor/*',
-                './public/test/spec/{,*/}*.js'
-            ]
-        },
         mocha: {
             all: {
                 options: {
@@ -332,7 +320,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'jshint',
         'test',
         'build'
     ]);

@@ -15,6 +15,8 @@
  */
  var UserSchema = new Schema({
  	email: { type: String, default: '' },
+  log : {},
+  statsLog : {},
  	username: { type: String, default: '' },
  	provider: { type: String, default: '' },
  	hashed_password: { type: String, default: '' },

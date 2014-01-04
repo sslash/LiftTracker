@@ -1,39 +1,61 @@
+{{#if err}}
+<p>{{err}}</p>
+{{else}}
+
 <h3>{{user.currentWorkoutProgram.programTitle}}</h3>
 
-<div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    	{{currDay.dayTitle}}
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" id="workout-days-list">
-    	{{#each days}}
-    		<li><a href="#">{{dayTitle}}</a></li>
-    	{{/each}}
-    </ul>
+
+<div class="row">
+  <div class="col-sm-4">
+  <p><small>Week: </small>{{currWeek}}</p>
   </div>
+
+  <div class="col-sm-4">
+    <label for="day-btn">Day: </label>
+    <div class="btn-group">
+      <button type="button" id="day-btn" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+       {{currDay.dayTitle}}
+       <span class="caret"></span>
+     </button>
+     <ul class="dropdown-menu" id="workout-days-list">
+       {{#each days}}
+       <li><a href="#">{{dayTitle}}</a></li>
+       {{/each}}
+     </ul>
+   </div>
+ </div>
+
+
+ <div class="col-sm-4">
+  <input type="button" id="save-btn" class="btn btn-success" value="Save Day">
+</div>
+
 </div>
 
 <table id="logTable" class="table table-striped">
-        <thead>
-          <tr>
-            <th>Exercise</th>
-            <th>Sets x Reps</th>
-            <th>Add Set</th>
-          </tr>
-        </thead>
-        <tbody>
-        	{{#each currDay.exercises}}
-        		<tr>
-        			<td>{{title}}</td>
-	            	<td>{{setsNReps}}</td>
-	            	<td>
-	            		<div class="inputField">
-	            			<input type="text" placeholder="# KG" class="form-control short"> X <input type="text" placeholder="# Reps" class="form-control short">
-	            		</div>
-	            		<button type="button" class="btn btn-primary">Add</button></td>
-				</tr>
+  <thead>
+    <tr>
+      <th>Exercise</th>
+      <th>Sets x Reps</th>
+      <th>Add Set</th>
+    </tr>
+  </thead>
+  <tbody>
+   {{#each currDay.exercises}}
+   <tr>
+     <td>{{title}}</td>
+     <td>{{setsNReps}}</td>
+     <td>
+       <div class="inputField">
+        <input type="text" placeholder="# KG" class="form-control short">
+         X 
+         <input type="text" data-ex="{{title}}" placeholder="# Reps" class="form-control short reps-input">
+      </div>
+      <button type="button" class="btn btn-primary" data-ex="{{title}}">Add</button></td>
+    </tr>
 
-        	{{/each}}
-        </tbody>
-      </table>
+    {{/each}}
+  </tbody>
+</table>
+{{/if}}
 
