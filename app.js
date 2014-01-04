@@ -2,7 +2,7 @@ var express = require('express'),
   mongoose = require('mongoose'),
   mongoConfig = require('./config/mongoConfig'),
   fs = require('fs'),
-  passport    = require('passport'),
+  passport = require('passport'),
   config = require('./config/config');
 
 
