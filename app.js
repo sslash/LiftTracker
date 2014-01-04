@@ -1,14 +1,12 @@
 var express = require('express'),
   mongoose = require('mongoose'),
+  mongoConfig = require('./config/mongoConfig'),
   fs = require('fs'),
   passport    = require('passport'),
   config = require('./config/config');
 
-mongoose.connect(config.db);
-var db = mongoose.connection;
-db.on('error', function () {
-  throw new Error('unable to connect to database at ' + config.db);
-});
+
+mongoConfig.connectToMongo();
 
 var modelsPath = __dirname + '/app/models';
 fs.readdirSync(modelsPath).forEach(function (file) {

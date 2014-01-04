@@ -1,6 +1,13 @@
 var mongoose	= require('mongoose');
 var schema		= mongoose.Schema;
 
+exports.getDbUrl = function(){
+	return  process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/lifttracker';
+};
+
+var mongoose	= require('mongoose');
+var schema		= mongoose.Schema;
+
 
 exports.connectToMongo = function() {
 

@@ -13,3 +13,8 @@ results
 
 npm-debug.log
 node_modules
+public/app/bower_components
+public/.sass-cache
+public/.tmp
+public/Gruntfile.js
+public/package.json

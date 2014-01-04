@@ -28,12 +28,11 @@ exports.user = {
 /*
  * Example protecting Articles (from another example) authorization routing middleware
  */
-
 exports.workoutProgram = {
   hasAuthorization : function (req, res, next) {
     if (req.workoutProgram.user.id != req.user.id) {
       req.flash('info', 'You are not authorized')
-      return res.redirect('/snipets/'+req.snippet.id)
+      return res.redirect('/workoutProgram/'+req.workoutProgram.id)
     }
     next()
   }
