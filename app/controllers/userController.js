@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	User = mongoose.model('User'),
 	Q	= require('q'),
 	utils = require('../../lib/utils');
-	WorkoutProgram = require('./WorkoutProgram');
+	WorkoutProgram = require('./workoutProgram');
 
 
 exports.index = function(req, res) {
