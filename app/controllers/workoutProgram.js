@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
 User = mongoose.model('User'),
-Q = require('Q'),
+Q = require('q'),
 WorkoutProgram = mongoose.model('WorkoutProgram');
 
 
