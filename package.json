@@ -10,11 +10,6 @@
     "connect-mongo": "latest",
     "passport": "latest",
     "passport-local": "latest",
-    "passport-facebook": "latest",
-    "passport-twitter": "latest",
-    "passport-github": "latest",
-    "passport-google-oauth": "latest",
-    "passport-linkedin": "latest",
     "underscore": "latest",
     "async": "latest",
     "q": "latest"
