@@ -14,11 +14,12 @@ module.exports = function(app, passport){
 	app.get('/', userController.index);
 	
 	/* Workout programs */
-	app.post('/workoutProgram', workoutProgram.post);
+	app.post('/workoutProgram', auth.requiresLogin, workoutProgram.post);
 	app.get('/workoutPrograms/users/:id', workoutProgram.getWPsByOwnerId);
 
 	/* Users */
 	app.post('/users/', userController.register);
+	app.put('/users', auth.requiresLogin, userController.updateUser);
 	app.post('/users/:uid/workoutProgram/setCurrent/:id', userController.setCurrentWorkoutProgram);
 	app.post('/users/:uid/logDay', userController.logDay);
 	app.post('/users/:uid/logStatsEntry', userController.logStatsEntry);

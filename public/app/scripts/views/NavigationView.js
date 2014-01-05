@@ -32,6 +32,7 @@ define([
             this.listenTo(this.user, 'registered', this.__userAuthenticated);
             this.listenTo(this.user, 'authenticated', this.__userAuthenticated);
             this.listenTo(this.user, 'invalid', this.__userInvalid);
+
         },
 
         render : function() {

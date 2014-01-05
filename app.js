@@ -15,8 +15,6 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   }
 });
 
-
-
 require('./config/passport')(passport, config);
 
 var app = express();
@@ -29,7 +27,7 @@ app.use(function(req, res, next){
   next();
 });
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 9000;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });

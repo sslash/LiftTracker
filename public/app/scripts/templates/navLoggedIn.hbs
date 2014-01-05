@@ -1,12 +1,17 @@
 <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Currently: {{currentProgram.programTitle}} <b class="caret"></b></a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      Currently: {{currentProgram.programTitle}} <b class="caret"></b></a>
       <ul class="dropdown-menu" id="curr-wp-list">
         {{#each wps}}
-          <li><a href="#" data-id="{{_id}}">{{programTitle}}</a></li>
+        	<li><a href="#" data-id="{{_id}}">
+	        	{{#if_eq ../currentProgram.programTitle programTitle}}
+	        		<span><i class="fa fa-check"></i></span>
+	        	{{/if_eq}}		
+	        	{{programTitle}}
+	        </a></li>
         {{/each}}
       </ul>
     </li>
 
 <li><p class="navbar-text">Current Week: {{week}}</p></li>
-
-<li><a class="username-small" href="#"><img class="img img-small img-rounded" src="{{img}}">{{username}}</a></li>
+<li><a class="username-small" href="#profile"><img class="img img-small img-rounded" src="{{img}}">{{username}}</a></li>

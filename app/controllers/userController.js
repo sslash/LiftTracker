@@ -1,11 +1,56 @@
 var mongoose = require('mongoose'),
 	User = mongoose.model('User'),
+	_ = require('underscore'),
 	Q = require('q'),
 	WorkoutProgram = require('./workoutProgram');
 
 
+var login = function (req, res) {
+	WorkoutProgram.getById(req.user.currentWorkoutProgram)
+	.then(function(WorkoutProgram){
+
+		res.send({
+			username : req.user.username,
+			id : req.user._id,
+			currentWorkoutProgram : WorkoutProgram,
+			log : req.user.log,
+			statsLog : req.user.statsLog,
+			email : req.user.email,
+			country : req.user.country,
+			birth : req.user.birth
+		});
+	});
+};
+
 exports.index = function(req, res) {
 	res.render('index');
+};
+
+exports.updateUser = function(req, res) {
+	var userId = req.session.passport.user;
+	exports.getById(userId)
+	.then(function(user){
+		var newUser = req.body;
+
+		delete newUser.log;
+		delete newUser.statsLog;
+		delete newUser.password;
+		delete newUser.currentWorkoutProgram;
+
+
+		user = _.extend( user, newUser);
+		user.save(function(err) {
+			if (err) {
+				res.send(err, 400);
+			}else{
+				WorkoutProgram.getById(req.user.currentWorkoutProgram)
+				.then(function(program){
+					user.currentWorkoutProgram = program;
+					res.send(user, 200);
+				});
+			}
+		});
+	});
 };
 
 exports.logDay = function(req, res) {
@@ -85,20 +130,6 @@ exports.getById = function(id){
 		}
 	});
 	return dfr.promise;
-};
-
-var login = function (req, res) {
-	WorkoutProgram.getById(req.user.currentWorkoutProgram)
-	.then(function(WorkoutProgram){
-
-		res.send({
-			username : req.user.username,
-			id : req.user._id,
-			currentWorkoutProgram : WorkoutProgram,
-			log : req.user.log,
-			statsLog : req.user.statsLog
-		});
-	});
 };
 
 exports.setCurrentWorkoutProgram = function(req,res){

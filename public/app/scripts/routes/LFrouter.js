@@ -8,10 +8,11 @@ define([
 
     var LfrouterRouter = Backbone.Router.extend({
         routes: {
-        	'generateProgram'   : 'generateProgram',
+            'generateProgram'   : 'generateProgram',
             'viewProgress'      : 'viewProgress',
             'logWorkout'        : 'logWorkout',
             'logStats'          : 'logStats',
+            'profile'           : 'profile',
             '*action'         : 'index'
         },
 
@@ -24,7 +25,11 @@ define([
         },
 
         generateProgram : function() {
-        	LF.command.execute('generateProgramView');
+            LF.command.execute('generateProgramView');
+        },
+
+        profile : function() {
+            LF.command.execute('profileView');
         },
 
         viewProgress : function(){

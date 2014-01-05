@@ -14,8 +14,8 @@ define([
         template: JST['./public/app/scripts/templates/ViewProgress.hbs'],
 
         render : function() {
-        	this.$el.html(this.template(this.serializeData()));
-        	return this;
+            this.$el.html(this.template(this.serializeData()));
+            return this;
         },
 
         serializeData : function() {

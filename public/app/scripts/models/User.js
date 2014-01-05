@@ -113,13 +113,19 @@ define([
         },
 
         validate: function(attrs, options) {
-        	if (!attrs.username || attrs.username.length <3) {
-        		return "Username must be provided";
-        	}
 
-        	if (!attrs.password || attrs.password.length <3) {
-        		return "Password must be provided";
-        	}
+            if ( !options.username){
+               if (!attrs.username || attrs.username.length <3) {
+                  return "Username must be provided";
+                }
+            }
+          
+            if (!options.password) {
+
+                if (!attrs.password || attrs.password.length <3) {
+                    return "Password must be provided";
+                }
+            }
         },
 
         authenticate : function(userData){

@@ -13,10 +13,11 @@ define([
     'views/NavigationView',
     'views/ViewProgressView',
     'views/logWorkout',
-    'views/logBodyStats'
+    'views/logBodyStats',
+    'views/ProfileView'
 
 ], function ($, _, Backbone, GenerateProgramView, HomeView, NavigationView,
-            ViewProgressView, LogWorkoutView, LogBodyStatsView) {
+            ViewProgressView, LogWorkoutView, LogBodyStatsView, ProfileView) {
     'use strict';
 
     var ViewCommand = function(){};
@@ -66,6 +67,16 @@ define([
             this.ui.main.fadeIn();
         },
 
+
+
+        /****************************************
+        *               VIEWS                   *
+        *****************************************/
+
+        profileView : function() {
+            this.craeteAndShowCurrView(ProfileView);
+        },
+
         viewProgress : function() {
             this.craeteAndShowCurrView(ViewProgressView);
         },
@@ -83,10 +94,10 @@ define([
             this.ui.main.append(this.currView.render().el);
         },
 
-    	generateProgramView : function(options){
+        generateProgramView : function(options){
             this.currView = new GenerateProgramView();
-    		this.ui.main.append(this.currView.render().el);
-    	},
+            this.ui.main.append(this.currView.render().el);
+        },
 
         /* COMMONS */
         craeteAndShowCurrView : function(View){

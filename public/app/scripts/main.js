@@ -19,6 +19,10 @@ require.config({
         },
         handlebars: {
             exports: 'Handlebars'
+        },
+
+        moment : {
+            exports: 'moment'
         }
     },
     paths: {
@@ -26,7 +30,8 @@ require.config({
         backbone: '../bower_components/backbone/backbone',
         underscore: '../bower_components/underscore/underscore',
         bootstrap: 'vendor/bootstrap',
-        handlebars: '../bower_components/handlebars/handlebars'
+        handlebars: '../bower_components/handlebars/handlebars',
+        moment : '../bower_components/momentjs/moment'
     }
 });
 

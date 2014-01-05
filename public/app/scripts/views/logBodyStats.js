@@ -28,8 +28,8 @@ define([
 
         	var data = {};
         	if ($('#weight').val().length > 0 ) { data.weight = $('#weight').val();}
-        	if ($('#gunsize').val().length > 0 ) { data.weight = $('#gunsize').val();}
-        	if ($('#abs').val().length > 0 ) { data.weight = $('#abs').val();}
+        	if ($('#gunsize').val().length > 0 ) { data.gunsize = $('#gunsize').val();}
+        	if ($('#abs').val().length > 0 ) { data.abs = $('#abs').val();}
 
         	LF.user.addLogStatsEntry(data);
         }

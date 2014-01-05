@@ -3,12 +3,12 @@
  * Module dependencies
  */
 
- var mongoose   = require('mongoose'),
+var mongoose   = require('mongoose'),
   Schema     = mongoose.Schema,
   crypto	   = require('crypto'),
   _ = require('underscore'),
- authTypes = ['github', 'twitter', 'facebook', 'google', 'linkedin'],
- userPlugin = require('mongoose-user');
+  authTypes = ['github', 'twitter', 'facebook', 'google', 'linkedin'],
+  userPlugin = require('mongoose-user');
 
 /**
  * User schema
@@ -17,6 +17,9 @@
  	email: { type: String, default: '' },
   log : {},
   statsLog : {},
+  email : { type: String, default: '' },
+  country : { type: String, default: '' },
+  birth : { type: String, default: '' },
  	username: { type: String, default: '' },
  	provider: { type: String, default: '' },
  	hashed_password: { type: String, default: '' },
