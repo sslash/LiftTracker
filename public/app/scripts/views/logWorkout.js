@@ -10,6 +10,7 @@ define([
 
 		var LogworkoutView = Backbone.View.extend({
 			template: JST['./public/app/scripts/templates/logWorkout.hbs'],
+			dayTpl : JST['./public/app/scripts/templates/workoutDay.hbs'],
 
 			initialize : function() {
 				this.day = {
@@ -19,10 +20,27 @@ define([
 				this.listenTo(LF.user, 'sync', this.userSynced);
 			},
 
+			ui : {
+				day : '#day-region'
+			},
+
 			events : {
 				'click #logTable button' 	: '__addSetClicked',
 				'click #save-btn'			: '__saveClicked',
-				'keypress .reps-input'		: '__addSetsKeyPress'
+				'keypress .reps-input'		: '__addSetsKeyPress',
+				'change #select-day'		: '__dayChanged'
+			},
+
+			__dayChanged : function(e) {
+				console.log(this);
+				var index = parseInt(e.currentTarget.value.split('Day -')[1], 10);
+				var day = LF.user.get('log').days[index];
+				this.renderDay(day);
+			},
+
+			renderDay : function(day) {
+				var html = this.dayTpl(day);
+				this.$(this.ui.day).html(html);
 			},
 
 			serializeData : function(){
@@ -32,14 +50,15 @@ define([
 				}
 				var currProgram = u.get('currentWorkoutProgram');
 				var currDay = u.getCurrentDayInWeek();
-				var currWeek = u.getCurrentProgramWeek();				
+				var currWeek = u.getCurrentProgramWeek();
 				
 				return {
 					days : currProgram.programDays,
 					currDay : currProgram.programDays[currDay],
 					currWeek : currWeek,
-					user : u
-				}
+					user : u,
+					log : LF.user.get('log')
+				};
 			},
 
 			userSynced : function(log) {
