@@ -11,6 +11,7 @@ define([
 		var LogworkoutView = Backbone.View.extend({
 			template: JST['./public/app/scripts/templates/logWorkout.hbs'],
 			dayTpl : JST['./public/app/scripts/templates/workoutDay.hbs'],
+			newEx : JST['./public/app/scripts/templates/newEx.hbs'],
 
 			initialize : function() {
 				this.day = {
@@ -25,14 +26,21 @@ define([
 			},
 
 			events : {
-				'click #logTable button' 	: '__addSetClicked',
+				'click [data-click="custom"]': '__addCustomSetClicked',
+				'click #logTable [data-type="add-btn"]' : '__addSetClicked',
 				'click #save-btn'			: '__saveClicked',
+				'click #logTable [data-type="add-custom"]' : '__addCustomClicked',
 				'keypress .reps-input'		: '__addSetsKeyPress',
 				'change #select-day'		: '__dayChanged'
 			},
 
+			__addCustomSetClicked : function(e) {
+				this.$(e.currentTarget).parents('tr').after(this.newEx());
+			},
+
+			__addCustomClicked : function() {},
+
 			__dayChanged : function(e) {
-				console.log(this);
 				var index = parseInt(e.currentTarget.value.split('Day -')[1], 10);
 				var day = LF.user.get('log').days[index];
 				this.renderDay(day);
@@ -75,6 +83,15 @@ define([
 			},
 
 			__saveClicked : function() {
+				var that = this;
+				this.$('[data-type="custom-ex"]').each(function(i, el) {
+					var title = $(el).find('[data-el="title"]').val();
+					var sets = $(el).find('[data-el="setsnreps"]').val();
+
+					that.day.ex.push({exTitle : title, sets : [{kg : sets, reps : sets}]});
+				});
+
+
 				LF.user.logWorkoutDay(this.day);
 			},
 
